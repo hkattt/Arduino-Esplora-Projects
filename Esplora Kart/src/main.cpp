@@ -3,6 +3,10 @@
 #include <Keyboard.h>
 #include <Mouse.h>
 
+/* ESPLORA KART NOTES:
+  Do not attempt to upload on PlatformIO, use the Arduino IDE instead
+*/
+
 
 class Controller {
 
