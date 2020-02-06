@@ -40,6 +40,7 @@ private:
   };
 
 public:
+  // class methods
   void check_buttons();
   void press_buttons(bool newState, int thisButton);
 };
@@ -56,23 +57,29 @@ void loop() {
 }
 
 void Controller::check_buttons() {
+  // Checks if any of the buttons changed state
   for (int thisButton = 0; thisButton < 8; thisButton++) {
     bool lastState = buttonStates[thisButton];
     bool newState = Esplora.readButton(buttons[thisButton]);
+    // Checks if the previous state is the same as the new state
     if (lastState != newState) {
       controller.press_buttons(newState, thisButton);
     }
     // Store the new button state, so you can sense a difference later:
     buttonStates[thisButton] = newState;
   }
+  // Small delay so that the program does not overflow
   delay(50);
 }
 
 void Controller::press_buttons(bool newState, int thisButton) {
+  // Performs a button press or release
   if (newState == PRESSED) {
+    // Press
     Keyboard.press(keystrokes[thisButton]);
   } 
   else if (newState == RELEASED) {
+    // Release
     Keyboard.release(keystrokes[thisButton]);
   }
 }
